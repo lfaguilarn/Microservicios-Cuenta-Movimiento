@@ -42,14 +42,14 @@ public class MovimientoService {
 
         switch (movimiento.getTipoMovimiento()) {
             case "DEPOSITO":
-                cuenta.setSaldoInicial(saldoActual + valor);
+                cuenta.setSaldo(saldoActual + valor);
                 break;
 
             case "RETIRO":
                 if (valor > saldoActual) {
                     throw new SaldoInsuficienteException("Saldo insuficiente para realizar el retiro");
                 }
-                cuenta.setSaldoInicial(saldoActual - valor);
+                cuenta.setSaldo(saldoActual - valor);
                 movimiento.setValor(valor*-1);
                 break;
 
@@ -61,7 +61,7 @@ public class MovimientoService {
         cuentaRepository.save(cuenta);
 
         // Registrar el nuevo saldo en el movimiento para dejarlo almacenado
-        // movimiento.setSaldo(cuenta.getSaldoInicial());
+        movimiento.setSaldoDisponible(cuenta.getSaldo());
 
         return movimientoRepository.save(movimiento);
     }

@@ -26,6 +26,9 @@ public class Cuenta {
     @NotNull
     private Boolean estado;
 
+    @NotNull
+    private Double saldo;
+    
     private Long clienteId; // FK virtual (comunicación entre MS)
 
 }

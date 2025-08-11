@@ -28,6 +28,9 @@ public class Movimiento {
     @NotNull
     private Double saldo;
 
+    @NotNull
+    private Double saldoDisponible;
+
     @ManyToOne
     @JoinColumn(name = "cuenta_id")
     private Cuenta cuenta;
